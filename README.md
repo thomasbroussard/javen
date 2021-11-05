@@ -34,31 +34,31 @@ use the api `Reactor.mvn.project("relative.path")` to declare a project, then ca
 import static org.javen.integration.Reactor.*;
 
 public class Integration {
-	
-	public static void main(String[] args){
-		buildModules();
-    }
-	
-	private static void buildModules() {
-		listOf(
-				mvn.project("module1"),
-				mvn.project("module2")
-		).forEach(
-				project -> {
-					logInfo("clean & package projects");
-					project.prepareCleanInstall()
-							.forceUpdate()
-							.skipTests()
-							.execute("building project");
 
-					project.prepareCopyDependencies().execute("getting dependencies");
-					project.prepareJavadoc()
-							.userProperty("doclint", "none")
-							.execute("generating javadoc");
-					project.prepareSourcesJar().execute("generating sources");
-				}
-		);
+	public static void main(String[] args) {
+		buildModules();
 	}
+
+	private static void buildModules() {
+        listOf(
+            mvn.project("module1"),
+            mvn.project("module2")
+        ).forEach(
+            project -> {
+                logInfo("clean & package projects");
+                project.prepareCleanInstall()
+                    .forceUpdate()
+                    .skipTests()
+                    .execute("building project");
+        
+                project.prepareCopyDependencies().execute("getting dependencies");
+                project.prepareJavadoc()
+                    .userProperty("doclint", "none")
+                    .execute("generating javadoc");
+                project.prepareSourcesJar().execute("generating sources");
+            }
+        );
+}
 }
 ````
 you can have a look to the sampleIntegrationProject and sampleProject subdirectories to find a sample operational configuration.
