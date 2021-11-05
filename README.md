@@ -58,7 +58,7 @@ public class Integration {
                 project.prepareSourcesJar().execute("generating sources");
             }
         );
-}
+    }
 }
 ````
 you can have a look to the sampleIntegrationProject and sampleProject subdirectories to find a sample operational configuration.
